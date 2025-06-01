@@ -5,7 +5,8 @@ const {
   getAllRooms,
   getRoomById,
   updateRoom,
-  deleteRoom
+  deleteRoom,
+  getDashboardStats  // <-- Import the new controller function!
 } = require('../controllers/roomController');
 
 const router = express.Router();
@@ -13,6 +14,9 @@ const router = express.Router();
 // Public: get all rooms, get one room
 router.get('/', authenticate, getAllRooms);
 router.get('/:id', authenticate, getRoomById);
+
+// Admin Dashboard stats (must come BEFORE /:id, to avoid route conflict)
+router.get('/dashboard-stats', authenticate, adminOnly, getDashboardStats);
 
 // Admin only: create, update, delete
 router.post('/', authenticate, adminOnly, createRoom);

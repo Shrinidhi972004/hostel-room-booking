@@ -1,0 +1,68 @@
+/* Navbar.css */
+
+nav {
+    background-color: #2c3e50;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: #ecf0f1;
+    flex-wrap: wrap; /* wraps on small screens */
+    gap: 8px; /* space between elements */
+  }
+  
+  /* Links styling */
+  nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+    position: relative;
+    font-weight: 500;
+  }
+  
+  /* Hover effect on links */
+  nav a:hover {
+    background-color: #34495e;
+  }
+  
+  /* Button styling */
+  nav button {
+    background-color: #e74c3c;
+    border: none;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect on button */
+  nav button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Separator styling between links and buttons */
+  /* Add separator '|' after each nav child except the last one and except buttons */
+  nav > *:not(:last-child)::after {
+    content: "|";
+    color: #7f8c8d;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  
+  /* Remove separator after buttons */
+  nav button::after {
+    content: "";
+    margin: 0;
+  }
+  
+  /* Remove separator after the last nav item */
+  nav > *:last-child::after {
+    content: "";
+  }
+  

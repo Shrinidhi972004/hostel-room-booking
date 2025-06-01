@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
+import "../css/Booking.css";
 
 function Booking() {
   const [bookings, setBookings] = useState([]);
@@ -32,31 +33,51 @@ function Booking() {
   };
 
   return (
-    <div>
-      <h2>My Bookings</h2>
-      {message && <p style={{ color: message.includes("success") ? "green" : "red" }}>{message}</p>}
-      {bookings.length === 0 ? (
-        <p>No bookings found.</p>
-      ) : (
-        <ul>
-          {bookings.map(b => (
-            <li key={b._id}>
-              Room: {b.room_id?.room_number || "-"} | 
-              From: {b.start_date?.substring(0, 10)} | 
-              To: {b.end_date?.substring(0, 10)} | 
-              Status: {b.status}
-              {b.status === "booked" && (
-                <button
-                  style={{ marginLeft: 10 }}
-                  onClick={() => handleCancel(b._id)}
-                >
-                  Cancel
-                </button>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="booking-container">
+      <div className="booking-content">
+        <h2 className="booking-title">My Bookings</h2>
+        
+        {message && (
+          <div className={`message ${message.includes("success") ? "success" : "error"}`}>
+            {message}
+          </div>
+        )}
+
+        {bookings.length === 0 ? (
+          <div className="no-bookings">
+            No bookings found.
+          </div>
+        ) : (
+          <ul className="bookings-list">
+            {bookings.map(booking => (
+              <li key={booking._id} className="booking-item">
+                <div className="booking-details">
+                  <span>
+                    <strong>Room:</strong> {booking.room_id?.room_number || "-"}
+                  </span>
+                  <span>
+                    <strong>From:</strong> {booking.start_date?.substring(0, 10)}
+                  </span>
+                  <span>
+                    <strong>To:</strong> {booking.end_date?.substring(0, 10)}
+                  </span>
+                  <span>
+                    <strong>Status:</strong> {booking.status}
+                  </span>
+                </div>
+                {booking.status === "booked" && (
+                  <button
+                    className="cancel-btn"
+                    onClick={() => handleCancel(booking._id)}
+                  >
+                    Cancel Booking
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

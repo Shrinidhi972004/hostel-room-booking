@@ -1,6 +1,7 @@
 import { useState } from "react";
 import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import "../css/AddRoom.css";
 
 function AddRoom() {
   const [form, setForm] = useState({
@@ -35,52 +36,95 @@ function AddRoom() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add New Room</h2>
-      {err && <p style={{ color: "red" }}>{err}</p>}
-      <input
-        name="room_number"
-        placeholder="Room Number"
-        value={form.room_number}
-        onChange={handleChange}
-        required
-      /><br />
-      <input
-        name="type"
-        placeholder="Type (single/double)"
-        value={form.type}
-        onChange={handleChange}
-        required
-      /><br />
-      <input
-        name="capacity"
-        type="number"
-        placeholder="Capacity"
-        value={form.capacity}
-        onChange={handleChange}
-        required
-      /><br />
-      <select name="status" value={form.status} onChange={handleChange}>
-        <option value="available">Available</option>
-        <option value="booked">Booked</option>
-        <option value="maintenance">Maintenance</option>
-      </select><br />
-      <input
-        name="price"
-        type="number"
-        placeholder="Price"
-        value={form.price}
-        onChange={handleChange}
-        required
-      /><br />
-      <input
-        name="amenities"
-        placeholder="Amenities (comma separated)"
-        value={form.amenities}
-        onChange={handleChange}
-      /><br />
-      <button type="submit">Create Room</button>
-    </form>
+    <div className="add-room-container">
+      <form className="add-room-form" onSubmit={handleSubmit}>
+        <h2 className="add-room-title">Add New Room</h2>
+        {err && <div className="error-message">{err}</div>}
+        
+        <div className="form-group">
+          <label htmlFor="room_number">Room Number</label>
+          <input
+            id="room_number"
+            name="room_number"
+            className="form-input"
+            placeholder="Room Number"
+            value={form.room_number}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="type">Room Type</label>
+          <input
+            id="type"
+            name="type"
+            className="form-input"
+            placeholder="Type (single/double)"
+            value={form.type}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="capacity">Capacity</label>
+          <input
+            id="capacity"
+            name="capacity"
+            type="number"
+            className="form-input"
+            placeholder="Capacity"
+            value={form.capacity}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="status">Status</label>
+          <select 
+            id="status"
+            name="status" 
+            className="form-select"
+            value={form.status} 
+            onChange={handleChange}
+          >
+            <option value="available">Available</option>
+            <option value="booked">Booked</option>
+            <option value="maintenance">Maintenance</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="price">Price</label>
+          <input
+            id="price"
+            name="price"
+            type="number"
+            className="form-input"
+            placeholder="Price"
+            value={form.price}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="amenities">Amenities</label>
+          <input
+            id="amenities"
+            name="amenities"
+            className="form-input"
+            placeholder="Amenities (comma separated)"
+            value={form.amenities}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit" className="submit-button">Create Room</button>
+      </form>
+    </div>
   );
 }
 

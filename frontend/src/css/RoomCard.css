@@ -1,0 +1,683 @@
+/* Roomcard.css - Modern styling for existing RoomCard structure with enhanced booking process */
+
+/* Main card container - targets the div with inline styles */
+div[style*="border: 1px solid #ccc"] {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  margin: 1.5rem !important;
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: white !important;
+}
+
+/* Gradient top border */
+div[style*="border: 1px solid #ccc"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 20px 20px 0 0;
+}
+
+/* Hover effect */
+div[style*="border: 1px solid #ccc"]:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 20px 20px -10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Room card heading */
+div[style*="border: 1px solid #ccc"] h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white !important;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Room details paragraphs */
+div[style*="border: 1px solid #ccc"] p {
+  font-size: 0.95rem;
+  color: white !important;
+  margin: 0.75rem 0;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Bold text in paragraphs */
+div[style*="border: 1px solid #ccc"] p b {
+  color: white !important;
+  font-weight: 600;
+}
+
+/* Status-specific styling */
+div[style*="border: 1px solid #ccc"] p:has(b:contains("Available")) b,
+div[style*="border: 1px solid #ccc"] p b[data-status="available"] {
+  color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+div[style*="border: 1px solid #ccc"] p:has(b:contains("Occupied")) b,
+div[style*="border: 1px solid #ccc"] p b[data-status="occupied"] {
+  color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.15);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+div[style*="border: 1px solid #ccc"] p:has(b:contains("Maintenance")) b,
+div[style*="border: 1px solid #ccc"] p b[data-status="maintenance"] {
+  color: #f59e0b !important;
+  background: rgba(245, 158, 11, 0.15);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Enhanced Button Styling for Booking Process */
+div[style*="border: 1px solid #ccc"] button {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border: none;
+  border-radius: 12px;
+  color: white !important;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  min-width: 120px;
+}
+
+/* Button shimmer effect */
+div[style*="border: 1px solid #ccc"] button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+div[style*="border: 1px solid #ccc"] button:hover::before {
+  left: 100%;
+}
+
+div[style*="border: 1px solid #ccc"] button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px 0 rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+}
+
+div[style*="border: 1px solid #ccc"] button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.35);
+}
+
+/* Book Button - Primary Action */
+div[style*="border: 1px solid #ccc"] button:not(:has(~ form)):not(form button) {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3);
+}
+
+div[style*="border: 1px solid #ccc"] button:not(:has(~ form)):not(form button):hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 12px 30px 0 rgba(16, 185, 129, 0.4);
+}
+
+/* Cancel Button - When form is showing */
+div[style*="border: 1px solid #ccc"]:has(form) button:first-of-type {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 4px 14px 0 rgba(239, 68, 68, 0.3);
+}
+
+div[style*="border: 1px solid #ccc"]:has(form) button:first-of-type:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  box-shadow: 0 12px 30px 0 rgba(239, 68, 68, 0.4);
+}
+
+/* Enhanced Form Styling for Booking Process */
+div[style*="border: 1px solid #ccc"] form {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(248, 250, 252, 0.1);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: slideDown 0.4s ease-out;
+  backdrop-filter: blur(5px);
+  position: relative;
+}
+
+/* Form header indicator */
+div[style*="border: 1px solid #ccc"] form::before {
+  content: '📅 Booking Details';
+  position: absolute;
+  top: -12px;
+  left: 1.5rem;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Enhanced Form Labels */
+div[style*="border: 1px solid #ccc"] form label {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white !important;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+/* Add icons to labels */
+div[style*="border: 1px solid #ccc"] form label:first-of-type::before {
+  content: '📅';
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+div[style*="border: 1px solid #ccc"] form label:last-of-type::before {
+  content: '📅';
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Enhanced Form Inputs for Date Selection */
+div[style*="border: 1px solid #ccc"] form input[type="date"] {
+  width: 100%;
+  max-width: 220px;
+  margin-left: 1rem;
+  padding: 0.875rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+div[style*="border: 1px solid #ccc"] form input[type="date"]:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.15),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+div[style*="border: 1px solid #ccc"] form input[type="date"]:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Custom calendar icon styling */
+div[style*="border: 1px solid #ccc"] form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+div[style*="border: 1px solid #ccc"] form input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Line breaks in form - enhanced spacing */
+div[style*="border: 1px solid #ccc"] form br {
+  line-height: 2.5;
+}
+
+/* Enhanced Submit Button - Confirm Booking */
+div[style*="border: 1px solid #ccc"] form button[type="submit"] {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.3);
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+}
+
+div[style*="border: 1px solid #ccc"] form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 12px 35px 0 rgba(16, 185, 129, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Submit button loading state preparation */
+div[style*="border: 1px solid #ccc"] form button[type="submit"]::after {
+  content: '✓ Confirm Booking';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+/* Icon background for visual interest */
+div[style*="border: 1px solid #ccc"]::after {
+  content: '🏠';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+/* All text elements white */
+div[style*="border: 1px solid #ccc"] * {
+  color: white !important;
+}
+
+/* Preserve status colors */
+div[style*="border: 1px solid #ccc"] p:has(b:contains("Available")) b,
+div[style*="border: 1px solid #ccc"] p b[data-status="available"] {
+  color: #10b981 !important;
+}
+
+div[style*="border: 1px solid #ccc"] p:has(b:contains("Occupied")) b,
+div[style*="border: 1px solid #ccc"] p b[data-status="occupied"] {
+  color: #ef4444 !important;
+}
+
+div[style*="border: 1px solid #ccc"] p:has(b:contains("Maintenance")) b,
+div[style*="border: 1px solid #ccc"] p b[data-status="maintenance"] {
+  color: #f59e0b !important;
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    max-height: 400px;
+  }
+}
+
+/* Pulse animation for available rooms */
+div[style*="border: 1px solid #ccc"]:has(p b:contains("Available")) {
+  animation: fadeInUp 0.6s ease-out, availablePulse 3s ease-in-out infinite;
+}
+
+@keyframes availablePulse {
+  0%, 100% {
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  50% {
+    box-shadow: 
+      0 20px 25px -5px rgba(16, 185, 129, 0.1),
+      0 10px 10px -5px rgba(16, 185, 129, 0.04);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  div[style*="border: 1px solid #ccc"] {
+    padding: 1.5rem !important;
+    margin: 1rem !important;
+    border-radius: 16px !important;
+  }
+  
+  div[style*="border: 1px solid #ccc"] h3 {
+    font-size: 1.25rem;
+  }
+  
+  div[style*="border: 1px solid #ccc"] p {
+    font-size: 0.875rem;
+  }
+  
+  div[style*="border: 1px solid #ccc"] form {
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  div[style*="border: 1px solid #ccc"] form input[type="date"] {
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+  
+  div[style*="border: 1px solid #ccc"] form label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  div[style*="border: 1px solid #ccc"] {
+    padding: 1.25rem !important;
+    margin: 0.75rem !important;
+  }
+  
+  div[style*="border: 1px solid #ccc"] h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+  
+  div[style*="border: 1px solid #ccc"] button {
+    width: 100%;
+    margin: 0.25rem 0;
+    min-width: auto;
+  }
+  
+  div[style*="border: 1px solid #ccc"] form {
+    padding: 1.25rem;
+    margin-top: 1rem;
+  }
+  
+  div[style*="border: 1px solid #ccc"] form::before {
+    left: 1rem;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  div[style*="border: 1px solid #ccc"] {
+    background: rgba(30, 41, 59, 0.95) !important;
+    border-color: rgba(71, 85, 105, 0.3) !important;
+  }
+  
+  div[style*="border: 1px solid #ccc"] form {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: rgba(71, 85, 105, 0.3);
+  }
+  
+  div[style*="border: 1px solid #ccc"] form input[type="date"] {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(71, 85, 105, 0.5);
+  }
+  
+  div[style*="border: 1px solid #ccc"] form input[type="date"]:focus {
+    border-color: #3b82f6;
+    background: rgba(30, 41, 59, 0.9);
+  }
+}
+
+/* Enhanced hover effects */
+div[style*="border: 1px solid #ccc"]:hover h3 {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+div[style*="border: 1px solid #ccc"]:hover::after {
+  transform: scale(1.2) rotate(5deg);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+/* Focus states for accessibility */
+div[style*="border: 1px solid #ccc"] button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+div[style*="border: 1px solid #ccc"] form input[type="date"]:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Alternative approach - if the above selectors don't work in all browsers */
+.room-card-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 1.5rem;
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.room-card-container * {
+  color: white !important;
+}
+
+.room-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.room-number {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.room-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.room-status.available {
+  background: rgba(46, 213, 115, 0.2);
+  color: #2ed573;
+}
+
+.room-status.booked {
+  background: rgba(255, 71, 87, 0.2);
+  color: #ff4757;
+}
+
+.room-status.maintenance {
+  background: rgba(255, 159, 67, 0.2);
+  color: #ff9f43;
+}
+
+.room-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.room-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.room-detail-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.room-detail-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+}
+
+.room-amenities {
+  margin-bottom: 1.5rem;
+}
+
+.amenities-label {
+  display: block;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.amenities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.amenity-tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: white;
+}
+
+.room-actions {
+  margin-top: 1rem;
+}
+
+.book-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: #2ed573;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.book-button:hover {
+  background: #26ae60;
+}
+
+.booking-form {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.booking-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.booking-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.booking-form input:focus {
+  outline: none;
+  border-color: #2ed573;
+}
+
+@media (max-width: 768px) {
+  .room-card {
+    padding: 1rem;
+  }
+
+  .room-details {
+    grid-template-columns: 1fr;
+  }
+}
+.admin-action-btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #f59e0b;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-action-btn:hover {
+  background: #d97706;
+}

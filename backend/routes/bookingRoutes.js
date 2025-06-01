@@ -12,7 +12,6 @@ const router = express.Router();
 // Student: book room, view my bookings, cancel my booking
 router.post('/', authenticate, createBooking);
 router.get('/my', authenticate, getMyBookings);
-router.post('/cancel/:id', authenticate, cancelBooking);
 router.delete('/:id', authenticate, cancelBooking);
 
 // Admin: view all bookings

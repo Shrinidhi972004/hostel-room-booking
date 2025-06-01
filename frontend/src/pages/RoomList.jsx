@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 import RoomCard from "../components/RoomCard";
+import "../css/RoomList.css";
 
 function RoomList() {
   const [rooms, setRooms] = useState([]);
@@ -44,18 +45,29 @@ function RoomList() {
   const filteredRooms = rooms;
 
   return (
-    <div>
-      <h2>Rooms</h2>
-      {message && <p style={{ color: message === "Room booked successfully!" ? "green" : "red" }}>{message}</p>}
-      {filteredRooms.length === 0 ? (
-        <p>No available rooms!</p>
-      ) : (
-        <div>
-          {filteredRooms.map(room => (
-            <RoomCard key={room._id} room={room} onBook={handleBook} />
-          ))}
-        </div>
-      )}
+    <div className="rooms-container">
+      <div className="rooms-content">
+        <h2 className="rooms-title">Available Rooms</h2>
+        
+        {message && (
+          <div className={`message ${message.includes("success") ? "success" : "error"}`}>
+            {message}
+          </div>
+        )}
+        
+        {filteredRooms.length === 0 ? (
+          <div className="no-rooms">
+            <div className="no-rooms-icon">🏨</div>
+            <p className="no-rooms-text">No rooms available at the moment!</p>
+          </div>
+        ) : (
+          <div className="rooms-grid">
+            {filteredRooms.map(room => (
+              <RoomCard key={room._id} room={room} onBook={handleBook} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

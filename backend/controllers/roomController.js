@@ -25,7 +25,6 @@ exports.getAllRooms = async (req, res) => {
   }
 };
 
-
 // Get a single room by ID
 exports.getRoomById = async (req, res) => {
   try {
@@ -54,6 +53,29 @@ exports.deleteRoom = async (req, res) => {
     const room = await Room.findByIdAndDelete(req.params.id);
     if (!room) return res.status(404).json({ error: 'Room not found' });
     res.json({ message: 'Room deleted' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Admin Dashboard Stats API
+exports.getDashboardStats = async (req, res) => {
+  try {
+    const totalRooms = await Room.countDocuments({});
+    const availableRooms = await Room.countDocuments({ status: 'available' });
+    const bookedRooms = await Room.countDocuments({ status: 'booked' });
+    const maintenanceRooms = await Room.countDocuments({ status: 'maintenance' });
+
+    // For this model, Vacant = Available
+    const vacantRooms = availableRooms;
+
+    res.json({
+      totalRooms,
+      availableRooms,
+      bookedRooms,
+      vacantRooms,
+      maintenanceRooms,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

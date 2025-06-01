@@ -6,13 +6,27 @@ exports.createBooking = async (req, res) => {
   try {
     const { room_id, start_date, end_date } = req.body;
 
-    // Check if room is available
+    // --- DATE VALIDATION ---
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // For accurate date comparison
+
+    const startDateObj = new Date(start_date);
+    const endDateObj = new Date(end_date);
+
+    if (startDateObj < today) {
+      return res.status(400).json({ error: 'Start date cannot be in the past.' });
+    }
+    if (endDateObj <= startDateObj) {
+      return res.status(400).json({ error: 'End date must be after start date.' });
+    }
+
+    // --- ROOM AVAILABILITY ---
     const room = await Room.findById(room_id);
     if (!room || room.status !== 'available') {
       return res.status(400).json({ error: 'Room is not available' });
     }
 
-    // Create the booking
+    // --- CREATE BOOKING ---
     const booking = new Booking({
       user_id: req.user.id,
       room_id,
@@ -22,7 +36,7 @@ exports.createBooking = async (req, res) => {
     });
     await booking.save();
 
-    // Mark the room as booked
+    // --- UPDATE ROOM STATUS ---
     room.status = 'booked';
     await room.save();
 

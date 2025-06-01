@@ -1,0 +1,420 @@
+/* RoomList.css - Minimalistic Modern Design */
+
+* {
+    box-sizing: border-box;
+  }
+  
+  .rooms-container {
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .rooms-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .rooms-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .message.success {
+    background: rgba(46, 213, 115, 0.2);
+    color: #2ed573;
+    border: 1px solid rgba(46, 213, 115, 0.3);
+  }
+  
+  .message.error {
+    background: rgba(255, 71, 87, 0.2);
+    color: #ff4757;
+    border: 1px solid rgba(255, 71, 87, 0.3);
+  }
+  
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+  }
+  
+  .no-rooms {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-top: 2rem;
+  }
+  
+  .no-rooms-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .no-rooms-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+  }
+  
+  /* Room Card Styles */
+  .room-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .room-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 25px 50px -12px rgba(0, 0, 0, 0.15),
+      0 20px 20px -10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .room-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 20px 20px 0 0;
+  }
+  
+  /* Status-based accent colors */
+  .room-card.available::before {
+    background: linear-gradient(90deg, #10b981, #059669);
+  }
+  
+  .room-card.booked::before {
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+  }
+  
+  .room-card.maintenance::before {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+  }
+  
+  .room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  
+  .room-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+  }
+  
+  .room-status {
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .room-status.available {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+  
+  .room-status.booked {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+  
+  .room-status.maintenance {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+  
+  .room-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .room-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .room-detail-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .room-detail-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .room-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .room-amenities {
+    margin-bottom: 1.5rem;
+  }
+  
+  .amenities-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .amenities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .amenity-tag {
+    background: rgba(59, 130, 246, 0.1);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+  
+  .room-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .book-button {
+    flex: 1;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .book-button:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  }
+  
+  .book-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* All text elements white */
+  .room-card * {
+    color: white !important;
+  }
+  
+  /* Preserve status colors */
+  .room-status.available {
+    color: #10b981 !important;
+  }
+  
+  .room-status.booked {
+    color: #f59e0b !important;
+  }
+  
+  .room-status.maintenance {
+    color: #ef4444 !important;
+  }
+  
+  /* Loading state */
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Animations */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .rooms-container {
+      padding: 1rem;
+    }
+    
+    .rooms-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .rooms-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .room-card {
+      padding: 1.5rem;
+    }
+    
+    .room-details {
+      grid-template-columns: 1fr;
+    }
+    
+    .room-actions {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .rooms-container {
+      padding: 0.75rem;
+    }
+    
+    .rooms-title {
+      font-size: 1.75rem;
+    }
+    
+    .room-card {
+      padding: 1.25rem;
+      border-radius: 16px;
+    }
+    
+    .room-number {
+      font-size: 1.25rem;
+    }
+    
+    .no-rooms {
+      padding: 3rem 1.5rem;
+    }
+  }
+  
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .rooms-container {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    
+    .rooms-title {
+      color: white;
+    }
+    
+    .room-card {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: rgba(71, 85, 105, 0.3);
+    }
+    
+    .no-rooms {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: rgba(71, 85, 105, 0.3);
+    }
+    
+    .room-number,
+    .room-detail-value {
+      color: white;
+    }
+    
+    .room-detail-label,
+    .amenities-label,
+    .no-rooms-text {
+      color: white;
+    }
+    
+    .room-actions {
+      border-top-color: #475569;
+    }
+  }

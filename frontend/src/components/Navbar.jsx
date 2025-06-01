@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import "../css/Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -27,14 +28,14 @@ const Navbar = () => {
       {/* My Bookings: Only student */}
       {role === "student" && (
         <>
-          {" | "}
+          {"   "}
           <Link to="/bookings">My Bookings</Link>
         </>
       )}
       {/* Add Room: Only admin */}
       {role === "admin" && (
         <>
-          {" | "}
+          {"   "}
           <Link to="/add-room">Add Room</Link>
         </>
       )}
@@ -45,8 +46,8 @@ const Navbar = () => {
         </button>
       ) : (
         <>
-          <span> | </span>
-          <Link to="/login">Login</Link> | <Link to="/register">Register</Link>
+          <span>   </span>
+          <Link to="/login">Login</Link>   <Link to="/register">Register</Link>
         </>
       )}
     </nav>

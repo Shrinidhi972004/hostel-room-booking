@@ -1,39 +1,108 @@
 import { useState } from "react";
 import API from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import "../css/Login.css";
 
 function Register() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", role: "student" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    role: "student"
+  });
   const [err, setErr] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleRegister = async (e) => {
     e.preventDefault();
     setErr("");
+    setIsLoading(true);
     try {
-      await API.post("/users/register", form);
+      await API.post("/users/register", formData);
       navigate("/login");
     } catch (error) {
       setErr(error.response?.data?.error || "Registration failed");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Register</h2>
-      {err && <p style={{ color: "red" }}>{err}</p>}
-      <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required /><br />
-      <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required /><br />
-      <input name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} required /><br />
-      <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required /><br />
-      <select name="role" value={form.role} onChange={handleChange}>
-        <option value="student">Student</option>
-        <option value="admin">Admin</option>
-      </select><br />
-      <button type="submit">Register</button>
-    </form>
+    <div className="login-container">
+      <form onSubmit={handleRegister} className="login-form">
+        <h2 className="login-title">Create Account</h2>
+        {err && <p className="error-message">{err}</p>}
+        <div className="input-group">
+          <input
+            name="name"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="login-input"
+            disabled={isLoading}
+          />
+        </div>
+        <div className="input-group">
+          <input
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="login-input"
+            disabled={isLoading}
+          />
+        </div>
+        <div className="input-group">
+          <input
+            name="phone"
+            placeholder="Enter your phone number"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            className="login-input"
+            disabled={isLoading}
+          />
+        </div>
+        <div className="input-group">
+          <input
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="login-input"
+            disabled={isLoading}
+          />
+        </div>
+        <div className="input-group">
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            className="login-input"
+            disabled={isLoading}
+          >
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button 
+          type="submit" 
+          className="login-button"
+          disabled={isLoading}
+        >
+          {isLoading ? "Registering..." : "Register"}
+        </button>
+      </form>
+    </div>
   );
 }
 
