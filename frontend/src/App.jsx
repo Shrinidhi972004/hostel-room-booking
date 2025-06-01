@@ -16,6 +16,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
+        {/* Root route: Dashboard for admin, RoomList for students */}
         <Route
           path="/"
           element={
@@ -28,18 +29,20 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        {/* Rooms: All logged-in users */}
         <Route
           path="/rooms"
           element={isLoggedIn ? <RoomList /> : <Navigate to="/login" />}
         />
-        <Route
-          path="/bookings"
-          element={isLoggedIn ? <Booking /> : <Navigate to="/login" />}
-        />
-        {/* Only admin can access AddRoom */}
+        {/* Bookings: Only students */}
+        {role === "student" && (
+          <Route path="/bookings" element={<Booking />} />
+        )}
+        {/* Add Room: Only admins */}
         {role === "admin" && (
           <Route path="/add-room" element={<AddRoom />} />
         )}
+        {/* Catch-all */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

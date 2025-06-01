@@ -12,18 +12,41 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link to="/">Dashboard</Link> | <Link to="/rooms">Rooms</Link> |{" "}
-      <Link to="/bookings">My Bookings</Link>
+      {/* Dashboard: Only admin */}
       {role === "admin" && (
         <>
-          {" "} | <Link to="/add-room">Add Room</Link>
+          <Link to="/">Dashboard</Link> |{" "}
         </>
       )}
+      {/* Rooms: Everyone who is logged in */}
+      {isLoggedIn && (
+        <>
+          <Link to="/rooms">Rooms</Link>
+        </>
+      )}
+      {/* My Bookings: Only student */}
+      {role === "student" && (
+        <>
+          {" | "}
+          <Link to="/bookings">My Bookings</Link>
+        </>
+      )}
+      {/* Add Room: Only admin */}
+      {role === "admin" && (
+        <>
+          {" | "}
+          <Link to="/add-room">Add Room</Link>
+        </>
+      )}
+      {/* Auth links */}
       {isLoggedIn ? (
-        <button style={{ marginLeft: 8 }} onClick={handleLogout}>Logout</button>
+        <button style={{ marginLeft: 8 }} onClick={handleLogout}>
+          Logout
+        </button>
       ) : (
         <>
-          {" "} | <Link to="/login">Login</Link> | <Link to="/register">Register</Link>
+          <span> | </span>
+          <Link to="/login">Login</Link> | <Link to="/register">Register</Link>
         </>
       )}
     </nav>

@@ -21,29 +21,27 @@ function RoomList() {
     }
   };
 
-  // Booking handler for students
-  const handleBook = async (roomId, startDate, endDate, cb, quantity) => {
-  setMessage("");
-  try {
-    await API.post("/bookings", {
-      room_id: roomId,
-      start_date: startDate,
-      end_date: endDate,
-      quantity: Number(quantity) // Pass quantity to backend
-    });
-    setMessage("Room booked successfully!");
-    fetchRooms();
-    if (cb) cb();
-  } catch (err) {
-    setMessage(err.response?.data?.error || "Booking failed. Please try again.");
-  }
-};
+  // Booking handler for students (no quantity)
+  const handleBook = async (roomId, startDate, endDate, cb) => {
+    setMessage("");
+    try {
+      await API.post("/bookings", {
+        room_id: roomId,
+        start_date: startDate,
+        end_date: endDate
+      });
+      setMessage("Room booked successfully!");
+      fetchRooms();
+      if (cb) cb();
+    } catch (err) {
+      setMessage(
+        err.response?.data?.error || "Booking failed. Please try again."
+      );
+    }
+  };
 
-
-  // Backend should already filter for students, but for safety:
-  const filteredRooms = role === "student"
-    ? rooms.filter(room => room.status === "available")
-    : rooms;
+  // Backend already filters available rooms for students
+  const filteredRooms = rooms;
 
   return (
     <div>

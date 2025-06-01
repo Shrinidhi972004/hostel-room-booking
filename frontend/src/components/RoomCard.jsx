@@ -5,7 +5,6 @@ const RoomCard = ({ room, onBook }) => {
   const [showForm, setShowForm] = useState(false);
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
-  const [quantity, setQuantity] = useState(1);
 
   const handleBook = () => setShowForm(!showForm);
 
@@ -16,18 +15,19 @@ const RoomCard = ({ room, onBook }) => {
         setShowForm(false);
         setStart("");
         setEnd("");
-        setQuantity(1);
-      }, quantity);
+      });
     }
   };
+
+  // Capitalize status for display
+  const statusDisplay = room.status.charAt(0).toUpperCase() + room.status.slice(1);
 
   return (
     <div style={{ border: "1px solid #ccc", margin: 8, padding: 8 }}>
       <h3>Room {room.room_number} - {room.type}</h3>
-      <p>Status: {room.status}</p>
-      <p>Available: {room.quantity}</p>
+      <p>Status: <b>{statusDisplay}</b></p>
       <p>Capacity: {room.capacity}</p>
-      <p>Price per room: ₹{room.price}</p>
+      <p>Price: ₹{room.price}</p>
       <p>Amenities: {(room.amenities || []).join(", ")}</p>
       {role === "student" && room.status === "available" && (
         <>
@@ -40,12 +40,6 @@ const RoomCard = ({ room, onBook }) => {
               <label>
                 End Date: <input type="date" value={end} onChange={e => setEnd(e.target.value)} required />
               </label><br />
-              <label>
-                Number of Rooms: <input type="number" min={1} max={room.quantity} value={quantity} onChange={e => setQuantity(e.target.value)} required />
-              </label><br />
-              <p>
-                Total Price: ₹{room.price * quantity}
-              </p>
               <button type="submit">Confirm Booking</button>
             </form>
           )}

@@ -13,6 +13,7 @@ const router = express.Router();
 router.post('/', authenticate, createBooking);
 router.get('/my', authenticate, getMyBookings);
 router.post('/cancel/:id', authenticate, cancelBooking);
+router.delete('/:id', authenticate, cancelBooking);
 
 // Admin: view all bookings
 router.get('/', authenticate, adminOnly, getAllBookings);
