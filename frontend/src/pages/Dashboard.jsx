@@ -10,12 +10,15 @@ function Dashboard() {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const res = await API.get("/dashboard/admin");
+        const res = await API.get("/dashboard/admin"); // Using working backend route
         setData(res.data);
+        console.log("Dashboard API response:", res.data); // Debug: see what the API returns
       } catch (err) {
         if (err.response?.status === 401 || err.response?.status === 403) {
           localStorage.clear();
           navigate("/login");
+        } else {
+          console.error("Dashboard fetch error:", err);
         }
       }
     };

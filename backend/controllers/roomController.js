@@ -77,6 +77,7 @@ exports.getDashboardStats = async (req, res) => {
       maintenanceRooms,
     });
   } catch (err) {
+    console.log("DASHBOARD ERROR:", err);
     res.status(500).json({ error: err.message });
   }
 };
